@@ -1,0 +1,81 @@
+version: "3"
+
+networks:
+  mynetwork:
+    name: mynetwork
+    driver: bridge
+
+services:
+  
+  oauth2-proxy:
+    image: quay.io/oauth2-proxy/oauth2-proxy
+    ports:
+      - "8000:8000"
+    command:
+      - --http-address
+      - :8000
+      - --upstream
+      - http://server:3000,http://api:3002/api/requests #,http://backend:3001/api/offers,http://backend:3001/api/get,http://backend:3001/api/getProduct,http://backend:3001/api/getCustomAttribute,http://api:4001/secured_api
+    environment:
+      OAUTH2_PROXY_CLIENT_ID: "880386795823-olrdr7047el8skubcoaa02avc13lql6b.apps.googleusercontent.com"
+      OAUTH2_PROXY_CLIENT_SECRET: "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"
+      OAUTH2_PROXY_COOKIE_SECRET: 5S5wk5A5O6MkKfZZ
+      OAUTH2_PROXY_EMAIL_DOMAINS: "*"
+      OAUTH2_PROXY_PROVIDER: oidc
+      OAUTH2_PROXY_REDIRECT_URL: "http://localhost:8000/oauth2/callback"
+      OAUTH2_PROXY_OIDC_ISSUER_URL: "https://accounts.google.com"
+      OAUTH2_PROXY_SCOPE: openid email
+      OAUTH2_PROXY_SKIP_AUTH_REGEX: /hospitalDashoard.php,/assets/*,/donate.js
+      OAUTH2_PROXY_SKIP_JWT_BEARER_TOKENS: true
+      OAUTH2_PROXY_PASS_ACCESS_TOKEN: true
+      OAUTH2_PROXY_PASS__AUTHORIZATION_HEADER: true
+      OAUTH2_PROXY_SKIP_PROVIDER_BUTTON: true
+    networks:
+      - mynetwork
+    
+      
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: hfms
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    networks:
+      - mynetwork
+    ports:
+      - "3308:3306"
+  
+  admin:    
+    image: adminer    
+    ports:      
+      - "8080:8080"
+    networks:
+      - mynetwork
+  
+  server:
+    build: ./server
+    ports:
+      - "3000:3000"
+    environment:
+      HOST : db
+      PORT : 3306
+      USER : user
+      PASSWORD : pass
+      DATABASE : hfms
+      PROXY : http://oauth2-proxy:8000
+    depends_on:
+      - db
+      - oauth2-proxy
+    networks:
+      - mynetwork
+    command: sh -c "sleep 10 && node index.js"
+  
+     
+  api:
+    build: ./api
+    ports:
+      - "3002:3002"
+    networks:
+      - mynetwork  
+      
