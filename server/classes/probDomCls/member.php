@@ -140,7 +140,7 @@ class Hospital extends Member
 
   private function __construct($id)
   {
-    $sql = "SELECT * FROM `Hospital` WHERE HospitalId = $id";
+    $sql = "SELECT * FROM `hospital` WHERE HospitalId = $id";
     $result = QueryExecutor::query($sql);
     $row = $result->fetch_assoc();
 
@@ -160,7 +160,7 @@ class Hospital extends Member
   public static function getInstance($id): Hospital|null
   {
     if (!array_key_exists($id, self::$hospitals)) {
-      $sql = "SELECT HospitalId FROM `Hospital` WHERE HospitalId = $id";
+      $sql = "SELECT HospitalId FROM `hospital` WHERE HospitalId = $id";
       if (QueryExecutor::query($sql)->num_rows == 0) {
         return null;
       } else {
@@ -266,7 +266,7 @@ class Hospital extends Member
   public function get_ceylinder()
   {
     if (is_null($this->ceylinderAval)) {
-      $sql = "SELECT  SmallAvailability,MediumAvailability, LargeAvailability FROM HospitalCylinderDetail WHERE HospitalId=$this->id";
+      $sql = "SELECT  SmallAvailability,MediumAvailability, LargeAvailability FROM hospitalcylinderdetail WHERE HospitalId=$this->id";
       $result = QueryExecutor::query($sql);
       $row = mysqli_fetch_assoc($result);
       if ($row != null) {
@@ -300,7 +300,7 @@ class Hospital extends Member
   public function get_blood()
   {
     if (is_null($this->bloodAval)) {
-      $sql = "SELECT  AplusAvailability,AminusAvailability, BplusAvailability ,BminusAvailability, OplusAvailability, OminusAvailability, ABplusAvailability ,ABminusAvailability  FROM BloodDetail WHERE HospitalId=$this->id";
+      $sql = "SELECT  AplusAvailability,AminusAvailability, BplusAvailability ,BminusAvailability, OplusAvailability, OminusAvailability, ABplusAvailability ,ABminusAvailability  FROM blooddetail WHERE HospitalId=$this->id";
       $result = QueryExecutor::query($sql);
       $row = mysqli_fetch_assoc($result);
       if ($row != null) {
@@ -333,7 +333,7 @@ class Hospital extends Member
   public function get_vaccine()
   {
     if (is_null($this->vaccineAval)) {
-      $sql = "SELECT  OxfordAvailability,PfizerAvailability, ModernalAvailability ,SinopharmAvailability, SputnikAvailability  FROM VaccineDetail WHERE HospitalId=$this->id";
+      $sql = "SELECT  OxfordAvailability,PfizerAvailability, ModernalAvailability ,SinopharmAvailability, SputnikAvailability  FROM vaccinedetail WHERE HospitalId=$this->id";
       $result = QueryExecutor::query($sql);
       $row = mysqli_fetch_assoc($result);
       if ($row != null) {
@@ -364,7 +364,7 @@ class Hospital extends Member
   }
   public function get_staredHospital()
   {
-    $sql = "SELECT staredHospital FROM `Hospital` WHERE HospitalId = $this->id;";
+    $sql = "SELECT staredHospital FROM `hospital` WHERE HospitalId = $this->id;";
     //$result = $this->connection->query($sql);
     //$row = $result->fetch_assoc();
     $result = QueryExecutor::query($sql);
@@ -406,7 +406,7 @@ class Hospital extends Member
   }
   public function get_staredProvider()
   {
-    $sql = "SELECT staredProvider FROM `Hospital` WHERE HospitalId = $this->id;";
+    $sql = "SELECT staredProvider FROM `hospital` WHERE HospitalId = $this->id;";
     // $result = $this->connection->query($sql);
     // $row = $result->fetch_assoc();
     $result = QueryExecutor::query($sql);
@@ -603,7 +603,7 @@ class Hospital extends Member
 
   public static function fetchByUserName(String $username): Hospital|null
   {
-    $stmt = QueryExecutor::prepare("SELECT `HospitalId` FROM `Hospital` WHERE username = ?");
+    $stmt = QueryExecutor::prepare("SELECT `HospitalId` FROM `hospital` WHERE username = ?");
     $stmt->bind_param("s", $username);
     if ($stmt->execute() && ($result = $stmt->get_result())) {
       if ($result->num_rows == 1) {
@@ -649,7 +649,7 @@ class Provider extends Member
 
   private function __construct($id)
   {
-    $sql = "SELECT * FROM `Provider` WHERE ProviderId = $id";
+    $sql = "SELECT * FROM `provider` WHERE ProviderId = $id";
     $result = QueryExecutor::query($sql);
     $row = $result->fetch_assoc();
 
@@ -669,7 +669,7 @@ class Provider extends Member
   public static function getInstance($id): Provider|null
   {
     if (!array_key_exists($id, self::$providers)) {
-      $sql = "SELECT ProviderId FROM `Provider` WHERE ProviderId = $id";
+      $sql = "SELECT ProviderId FROM `provider` WHERE ProviderId = $id";
       if (QueryExecutor::query($sql)->num_rows == 0) {
         return null;
       } else {
@@ -780,7 +780,7 @@ class Provider extends Member
 
   public function get_staredHospital()
   {
-    $sql = "SELECT staredHospital FROM `Provider` WHERE ProviderId = $this->id;";
+    $sql = "SELECT staredHospital FROM `provider` WHERE ProviderId = $this->id;";
     //$result = $this->connection->query($sql);
     //$row = $result->fetch_assoc();
     $result = QueryExecutor::query($sql);
@@ -822,7 +822,7 @@ class Provider extends Member
   }
   public function get_staredProvider()
   {
-    $sql = "SELECT staredProvider FROM `Hospital` WHERE HospitalId = $this->id;";
+    $sql = "SELECT staredProvider FROM `hospital` WHERE HospitalId = $this->id;";
     // $result = $this->connection->query($sql);
     // $row = $result->fetch_assoc();
     $result = QueryExecutor::query($sql);
@@ -967,7 +967,7 @@ class Provider extends Member
 
   public static function fetchByUserName(String $username): Provider|null
   {
-    $stmt = QueryExecutor::prepare("SELECT `ProviderId` FROM `Provider` WHERE username = ?");
+    $stmt = QueryExecutor::prepare("SELECT `ProviderId` FROM `provider` WHERE username = ?");
     $stmt->bind_param("s", $username);
     if ($stmt->execute() && ($result = $stmt->get_result())) {
       if ($result->num_rows == 1) {

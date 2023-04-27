@@ -135,7 +135,7 @@ class HHRequest extends Request
 
     public function assignAll()
     {
-        $sql1 = "SELECT * FROM HHrequest WHERE RequestId=$this->id";
+        $sql1 = "SELECT * FROM hhrequest WHERE RequestId=$this->id";
 
         if($result = QueryExecutor::query($sql1)){
            
@@ -164,7 +164,7 @@ class HHRequest extends Request
         
           
         }
-        $sql2 = "SELECT * FROM Hospital WHERE HospitalId=$hospitalID";
+        $sql2 = "SELECT * FROM hospital WHERE HospitalId=$hospitalID";
 
         if($result = QueryExecutor::query($sql2)){
             $row = $result->fetch_assoc();
@@ -172,7 +172,7 @@ class HHRequest extends Request
 
         }
 
-        $sql3 = "SELECT * FROM Hospital WHERE HospitalId=$providerID";
+        $sql3 = "SELECT * FROM hospital WHERE HospitalId=$providerID";
 
         if($result = QueryExecutor::query($sql3)){
             
@@ -199,7 +199,7 @@ class HPRequest extends Request
 
     public function assignAll()
     {
-        $sql1 = "SELECT * FROM HPrequest WHERE RequestId=$this->id";
+        $sql1 = "SELECT * FROM hprequest WHERE RequestId=$this->id";
 
         if($result = QueryExecutor::query($sql1)) {
             $row = $result->fetch_assoc();
@@ -226,7 +226,7 @@ class HPRequest extends Request
             
           
         }
-        $sql2 = "SELECT * FROM Hospital WHERE HospitalId=$hospitalID";
+        $sql2 = "SELECT * FROM hospital WHERE HospitalId=$hospitalID";
 
         if($result = QueryExecutor::query($sql2)){
             //$result = $this->connection->query($sql2);
@@ -235,7 +235,7 @@ class HPRequest extends Request
 
         }
 
-        $sql3 = "SELECT * FROM Provider WHERE ProviderId=$providerID";
+        $sql3 = "SELECT * FROM provider WHERE ProviderId=$providerID";
 
         if($result = QueryExecutor::query($sql3)){
             //$result = $this->connection->query($sql3);
@@ -466,7 +466,7 @@ class ChatBuilder
     public function buildHHChat(HHRequest $hhrequest): Chat
     {
         $this->chat = new Chat();
-        $sql="SELECT * FROM `Message` WHERE requestId ='".$hhrequest->getId()."' AND requestType ='HH' ORDER BY time ASC";
+        $sql="SELECT * FROM `message` WHERE requestId ='".$hhrequest->getId()."' AND requestType ='HH' ORDER BY time ASC";
         $result = QueryExecutor::query($sql);
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         foreach($rows as $row) {
@@ -478,7 +478,7 @@ class ChatBuilder
     public function buildHPChat(HPRequest $hprequest): Chat
     {
         $this->chat = new Chat();
-        $sql="SELECT * FROM `Message` WHERE requestId ='".$hprequest->getId()."' AND requestType ='HP' ORDER BY time ASC";
+        $sql="SELECT * FROM `message` WHERE requestId ='".$hprequest->getId()."' AND requestType ='HP' ORDER BY time ASC";
         $result = QueryExecutor::query($sql);
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         foreach($rows as $row) {
