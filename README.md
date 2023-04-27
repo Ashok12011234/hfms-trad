@@ -1,9 +1,6 @@
 # Hospital-Facility-Management-System
 
-### This is the semester 3 Group project
+### This is the traditional application to demonstrate the capabilities of oauth2-proxy
 
-Contributored by,<br/>
-1)Kajanan Selvanesan <br/>
-2)Gopinath  190199A <br/>
-3)Sivakajan Sivaparan  190597R<br/>
+
 
