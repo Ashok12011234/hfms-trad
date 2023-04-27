@@ -1,8 +1,7 @@
 <?php
 
 include("config.php");
-include("classes/sysLvlCls/Password.php");
-include("classes/probDomCls/Mail.php");
+
 
 class MemberType
 {
@@ -11,17 +10,8 @@ class MemberType
   const PROVIDER = 2;
 }
 
-class LoginFail
-{
-  const USERNAME = "Username doesn't exist";
-  const PASSWORD = "Password didn't match";
-}
 
-class ForgotPassword
-{
-  const SUCCESS = "Password has been sent to your email";
-  const FAIL = "Try again later";
-}
+
 
 abstract class MemberState
 {
@@ -57,17 +47,13 @@ abstract class Member
   public $accountNo;
   public $bankName;
   public $website;
-  public $password;
   public $staredUser;
   public $state;
 
   public abstract function request();
   public abstract function filter($type);
 
-  public function get_password()
-  {
-    return $this->password;
-  }
+ 
   public function get_name()
   {
 
@@ -142,31 +128,7 @@ abstract class Member
     return null;
   }
 
-  public static function forgotPassword(String $username): String
-  {
-    if (!is_null($member = self::fetchByUserName($username))) {
-      $emailAddress = $member->get_email();
-      if (Mail::isValidEmailAddress($emailAddress)) {
-        $passwordMail = new Mail($emailAddress, "Password from Life Share", $member->get_password());
-        if ($passwordMail->send()) {
-          return ForgotPassword::SUCCESS;
-        } else {
-          return ForgotPassword::FAIL;
-        }
-      }
-      return "Invalid email address";
-    }
-    return LoginFail::USERNAME;
-  }
-
-  public static function login(String $username): String
-  {
-    if (($error = Hospital::login($username)) == LoginFail::PASSWORD) {
-      return $error;
-    }
-    $error = Provider::login($username);
-    return $error;
-  }
+ 
 }
 
 class Hospital extends Member
@@ -192,7 +154,6 @@ class Hospital extends Member
     $this->website = $row["Website"];
     $this->accountNo = $row['AccountNumber'];
     $this->bankName = $row['BankName'];
-    $this->password = Password::decrypt($row['Password']);
     $this->state = $row['State'];
   }
 
@@ -702,7 +663,6 @@ class Provider extends Member
     $this->website = $row["Website"];
     $this->accountNo = $row['AccountNumber'];
     $this->bankName = $row['BankName'];
-    $this->password = Password::decrypt($row['Password']);
     $this->state = $row['State'];
   }
 

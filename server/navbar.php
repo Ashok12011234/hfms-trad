@@ -113,12 +113,6 @@ if (AuthenticationService::isActive()) {
       <hr>
       <ul style="list-style: none;">
 
-
-        <li style="margin-bottom: 10px;"><a href="./editProfile.php" id="hospitalSignoutPannel">
-            Edit Profile</a></li>
-        <li style="margin-bottom: 10px;"><a href="./updateResources.php" id="hospitalSignoutPannel">
-            Update Resources</a></li>
-
         <li style="margin-bottom: 10px;"><a href="#" id="hospitalSignoutPannel">
             Help</a></li>
             
