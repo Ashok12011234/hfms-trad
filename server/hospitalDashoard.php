@@ -316,9 +316,9 @@ if (array_key_exists("hosdashboard", $_SESSION) || array_key_exists("prodashboar
       <?php
       if (isset($_POST['SearchContent'])) {
         $content = $_POST['SearchContent'];
-        $sql = "SELECT * FROM Hospital WHERE UserName LIKE '%$content%' OR Name LIKE '%$content%' OR Website LIKE '%$content%' OR Address LIKE '%$content%';";;
+        $sql = "SELECT * FROM hospital WHERE UserName LIKE '%$content%' OR Name LIKE '%$content%' OR Website LIKE '%$content%' OR Address LIKE '%$content%';";;
       } else {
-        $sql = "SELECT * FROM Hospital";
+        $sql = "SELECT * FROM hospital";
       }
 
 
@@ -362,9 +362,9 @@ if (array_key_exists("hosdashboard", $_SESSION) || array_key_exists("prodashboar
       <?php
       if (isset($_POST['SearchContent'])) {
         $content = $_POST['SearchContent'];
-        $sql = "SELECT * FROM Provider WHERE UserName LIKE '%$content%' OR Name LIKE '%$content%' OR Website LIKE '%$content%' OR Address LIKE '%$content%';";
+        $sql = "SELECT * FROM provider WHERE UserName LIKE '%$content%' OR Name LIKE '%$content%' OR Website LIKE '%$content%' OR Address LIKE '%$content%';";
       } else {
-        $sql = "SELECT * FROM Provider";
+        $sql = "SELECT * FROM provider";
       }
 
 

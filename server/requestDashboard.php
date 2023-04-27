@@ -1,6 +1,6 @@
 <?php
 include("classes/probDomCls/request.php");
-//include("AuthenticationService.php");
+include("navbar.php");
 
 $_SESSION["request_option"]="sent";
 ?>
@@ -31,13 +31,10 @@ $_SESSION["request_option"]="sent";
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 
-    <script src="donate.js"></script>
+    
 
     </head>
 <body>
-<?php
-include("navbar.php");
-?>
     <!-- Headings and title-->
     <div class="row justify-content-between mt-5 ms-2 me-2">
         <div class="col-md-8 ">
@@ -85,11 +82,13 @@ include("navbar.php");
                     }
                 } else {
                     // Handle case when $result is not an array
-                    echo "An error occurred while fetching product details.";
+                    echo "Not array : An error occurred while fetching product details.";
+                   
                 }
             } else {
                 // Handle case when $result is false or null
-                echo "An error occurred while fetching product details.";
+                echo "Null/False return : An error occurred while fetching product details.";
+                
             }
 
 /*
@@ -132,7 +131,7 @@ include("navbar.php");
         }else if($type ==2){
 
             $providerID = 1;
-            $sql2 = "SELECT * FROM HPrequest WHERE ProviderId=$providerID";
+            $sql2 = "SELECT * FROM hprequest WHERE ProviderId=$providerID";
                
             if($result = QueryExecutor::query($sql2)){
                $rows = $result->fetch_all(MYSQLI_ASSOC);

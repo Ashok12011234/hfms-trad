@@ -2,9 +2,9 @@
 
 class Database
 {
-    public const HOST = "localhost";
-    public const USERNAME = "root";
-    public const PASSWORD = "password";
+    public const HOST = "db";
+    public const USERNAME = "user";
+    public const PASSWORD = "pass";
     public const NAME = "hfms";
 }
 

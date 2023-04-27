@@ -270,9 +270,9 @@ $type=0;
 
         if (isset($_POST['SearchContent'])) {
           $content = $_POST['SearchContent'];
-          $sql = "SELECT * FROM Hospital WHERE ( `hospital`.`HospitalId` =  '$indexStar' AND (UserName LIKE '%$content%' OR Name LIKE '%$content%' OR Website LIKE '%$content%' OR Address LIKE '%$content%'));";;
+          $sql = "SELECT * FROM hospital WHERE ( `hospital`.`HospitalId` =  '$indexStar' AND (UserName LIKE '%$content%' OR Name LIKE '%$content%' OR Website LIKE '%$content%' OR Address LIKE '%$content%'));";;
         } else {
-          $sql = "SELECT * FROM Hospital WHERE `hospital`.`HospitalId` =  '$indexStar'";
+          $sql = "SELECT * FROM hospital WHERE `hospital`.`HospitalId` =  '$indexStar'";
         }
         if ($result = QueryExecutor::query($sql)) {
           $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -308,9 +308,9 @@ $type=0;
 
         if (isset($_POST['SearchContent'])) {
           $content = $_POST['SearchContent'];
-          $sql = "SELECT * FROM Provider WHERE ( `provider`.`ProviderId` =  '$indexStar' AND (UserName LIKE '%$content%' OR Name LIKE '%$content%' OR Website LIKE '%$content%' OR Address LIKE '%$content%'));";;
+          $sql = "SELECT * FROM provider WHERE ( `provider`.`ProviderId` =  '$indexStar' AND (UserName LIKE '%$content%' OR Name LIKE '%$content%' OR Website LIKE '%$content%' OR Address LIKE '%$content%'));";;
         } else {
-          $sql = "SELECT * FROM Provider WHERE `provider`.`ProviderId` =  '$indexStar'";
+          $sql = "SELECT * FROM provider WHERE `provider`.`ProviderId` =  '$indexStar'";
         }
         if ($result = QueryExecutor::query($sql)) {
           $rows = $result->fetch_all(MYSQLI_ASSOC);
