@@ -1,0 +1,54 @@
+h3 {
+    font-size: 110%;
+}
+
+.link-btn {
+    text-decoration: none;
+}
+
+.link-btn:hover {
+    text-decoration: underline;
+}
+
+.link-btn:focus {
+    box-shadow: none;
+}
+
+.modal-body button {
+    width: 100%;
+}
+
+.modal-body button:hover {
+    text-decoration: none;
+}
+
+#chat-textarea {
+    resize: none;
+    height: 10px;
+}
+
+.chat-btn {
+    text-decoration: none;
+}
+
+.message {
+    width: fit-content;
+    max-width: 75%;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: left;
+    margin-bottom: 5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+
+#chat-box-body {
+    height: 300px;
+    overflow: auto;
+}
+
+#status button{
+    width: 100%;
+}
+.hide {
+    display: none;
+  }

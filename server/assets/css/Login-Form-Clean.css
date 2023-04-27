@@ -1,0 +1,112 @@
+html {
+  background: url(../documents/PageDocuments/Comman/Images/loginSignupBG.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+body {
+  background: none;
+}
+
+.float-clear {
+  clear: both;
+}
+
+.login-clean {
+  padding-top: 15%;
+}
+
+.login-clean form {
+  max-width: 320px;
+  width: 90%;
+  margin: 0 auto;
+  margin-right: 80px;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  color: #505e6c;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.login-clean .illustration {
+  text-align: center;
+}
+
+.login-clean .illustration input {
+  color:#198754;
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+  font-family: Poppins, Alatsi, Arial, Helvetica, sans-serif;
+}
+
+.illustration input {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.login-clean form .form-control {
+  background: #f7f9fc;
+  border: none;
+  border: 1px solid #dfe7f1;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+  height: 42px;
+}
+
+.login-clean form .btn-primary {
+  width: 100px;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none  !important;
+  text-shadow: none;
+  outline: none;
+  float: right;
+}
+
+.login-clean form .btn-primary:focus {
+  outline: 1px solid #198754;
+  box-shadow: none;
+}
+
+.login-clean form .forgot {
+  display: block;
+  text-align: left;
+  font-size: 15px;
+  color: #2267ac;
+  text-decoration: none;
+}
+
+.login-clean form .forgot:hover {
+  text-decoration: underline;
+}
+
+.link-btn {
+  text-decoration: none;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+.link-btn:focus {
+  box-shadow: none;
+}
+
+#mail-sending {
+  width: 700px;
+  height: 440px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  display: none;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  color:#198754;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 400;
+  font-family: Poppins, Alatsi, Arial, Helvetica, sans-serif;
+  background: url(../documents/PageDocuments/admin/mail_sent.gif) no-repeat;
+  background-size: cover;
+}

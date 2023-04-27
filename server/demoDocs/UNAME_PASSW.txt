@@ -1,0 +1,15 @@
+H_Username: Hospital.01@hfms (01-10)
+P_Username: Provider.01@hfms (01-10)
+Password: LifeShare#14
+
+A_Username: admin
+A_Password: ad@nike76
+
+creadit card number: 5555555555554444
+CVV: xxx (x = [0-9])
+
+if u want creat new H/P then
+H_Username: Hospital.11@hfms
+P_Username: Provider.11@hfms
+Password: LifeShare#14
+

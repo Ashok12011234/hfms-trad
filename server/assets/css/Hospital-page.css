@@ -1,0 +1,57 @@
+.available{
+    color: green;   
+}
+
+.shortage{
+    color:red;
+}
+
+.available,.shortage{
+    font-size: 13px;
+    margin-bottom: 0px;
+    
+}
+.Hospital-Facilities{
+    border-right: 2px solid #888;
+}
+
+#hospitalNotificationsPanel{
+    min-height: 50px; 
+    min-width: 300px; 
+    background-color: rgb(240, 253, 228); 
+    float: right;
+    padding: 15px; 
+    border-radius: 10px; 
+    margin-left: -180px;
+}
+#hospitalNotificationBell{
+    text-decoration:none; 
+    color: white; 
+    font-weight: bold; 
+    font-size: 27px;
+    cursor: pointer;
+}
+#hospitalDropdownButton{
+    text-decoration:none; 
+    color: white; 
+    font-weight: bold; 
+    font-size: 20px;
+    cursor: pointer;
+}
+#hospitalDropdownPanel{
+    min-height: 300px; 
+    min-width: 300px; 
+    background-color: rgb(240, 253, 228); 
+    float: right;
+    padding: 30px 30px 0px 30px; 
+    border-radius: 10px; 
+    margin-left: -180px;
+}
+
+#hospitalSignoutPannel{
+    cursor: pointer; 
+    text-decoration: none; 
+    color: black; 
+    font-size: 20px; 
+    font-weight: bold;
+}
