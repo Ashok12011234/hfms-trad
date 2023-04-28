@@ -17,7 +17,7 @@ class AuthenticationService {
         
         // Set up curl request
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'http://oauth2-proxy:8000/oauth2/userinfo');
+        curl_setopt($ch, CURLOPT_URL, getenv('URL').'/oauth2/userinfo');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_COOKIE, self::$cookies);
@@ -36,7 +36,7 @@ class AuthenticationService {
         // Set up curl request
         self::setCookies();
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'http://oauth2-proxy:8000/oauth2/auth');
+        curl_setopt($ch, CURLOPT_URL, getenv('URL').'/oauth2/auth');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_COOKIE, self::$cookies);
@@ -66,7 +66,7 @@ class AuthenticationService {
         // Set up curl request
         self::setCookies();
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,'http://oauth2-proxy:8000/requests');
+        curl_setopt($ch, CURLOPT_URL,getenv('URL').'/requests');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_COOKIE, self::$cookies);

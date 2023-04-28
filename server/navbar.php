@@ -41,7 +41,7 @@ if (AuthenticationService::isActive()) {
                     echo 'display:none;';
                   }
                   ?>" class="nav-item ms-2">
-        <a class="nav-link" href="http://localhost:8000/oauth2/sign_in?rd=/hospitalDashoard.php">Login</a>
+        <a class="nav-link" href="/oauth2/sign_in?rd=/hospitalDashoard.php">Login</a>
       </li>
       
      
@@ -116,7 +116,7 @@ if (AuthenticationService::isActive()) {
         <li style="margin-bottom: 10px;"><a href="#" id="hospitalSignoutPannel">
             Help</a></li>
             
-        <li><a href="http://localhost:8000/oauth2/sign_out?rd=/hospitalDashoard.php" id="hospitalSignoutPannel">
+        <li><a href="/oauth2/sign_out?rd=/hospitalDashoard.php" id="hospitalSignoutPannel">
 
             Logout</a></li>
             <!--
