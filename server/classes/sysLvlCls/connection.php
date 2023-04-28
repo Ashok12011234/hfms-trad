@@ -2,11 +2,33 @@
 
 class Database
 {
-    public const HOST = "db";
-    public const USERNAME = "user";
-    public const PASSWORD = "pass";
-    public const NAME = "hfms";
+    private static $instance;
+    public $HOST ;
+    public $PORT ;
+    public $USERNAME ;
+    public $PASSWORD ;
+    public $NAME;
+
+    private function __construct()
+    {
+        $this->HOST = getenv('HOST');
+        $this->PORT = getenv('PORT');
+        $this->USERNAME = getenv('USERNAME');
+        $this->PASSWORD = getenv('PASSWORD');
+        $this->NAME = getenv('DATABASE');
+    }
+
+    public static function getInstance()
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new Database();
+        }
+
+        return self::$instance;
+    }
 }
+
+
 
 abstract class ObjectPool
 {
@@ -147,7 +169,7 @@ class ConnectionPool extends ObjectPool
     public static function getInstance(): ConnectionPool
     {
         if (!isset(self::$connectionPool) || is_null(self::$connectionPool)) {
-            self::$connectionPool = new ConnectionPool(Database::HOST, Database::USERNAME, Database::PASSWORD, Database::NAME);
+            self::$connectionPool = new ConnectionPool(Database::getInstance()->HOST, Database::getInstance()->USERNAME, Database::getInstance()->PASSWORD, Database::getInstance()->NAME,Database::getInstance()->PORT);
         }
         return self::$connectionPool;
     }

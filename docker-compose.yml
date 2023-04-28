@@ -71,6 +71,13 @@ services:
   server:
     container_name: server
     build: ./server
+    environment:
+      HOST: db
+      PORT: 3306
+      USERNAME: user
+      PASSWORD: pass
+      DATABASE: hfms
+      URL: 'http://oauth2-proxy:8000'
     working_dir: /var/www
     volumes:
       - ./server:/var/www

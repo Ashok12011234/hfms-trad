@@ -2,8 +2,8 @@
 include('classes/sysLvlCls/connection.php');
 
 // Create database
-$conn = new mysqli("db","user","pass");
-$createDB = "CREATE DATABASE IF NOT EXISTS `".Database::NAME."`";
+$conn = new mysqli(Database::getInstance()->HOST, Database::getInstance()->USERNAME, Database::getInstance()->PASSWORD);
+$createDB = "CREATE DATABASE IF NOT EXISTS `".Database::getInstance()->NAME."`";
 $conn->query($createDB);
 $conn->close();
 
