@@ -83,7 +83,6 @@ $_SESSION["request_option"]="sent";
                 } else {
                     // Handle case when $result is not an array
                     echo "Not array : An error occurred while fetching product details.";
-                   
                 }
             } else {
                 // Handle case when $result is false or null
