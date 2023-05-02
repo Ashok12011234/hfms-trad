@@ -59,6 +59,19 @@ hfms-admin:
     type: ClusterIP
     port: 8080
 
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations: {}
+    hosts:
+      - host: hfms.admin.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls: 
+      - secretName: tls-cert-hfms-admin
+        hosts:
+          - hfms.admin.com
 
 oauth2-proxy:
 
@@ -100,3 +113,17 @@ oauth2-proxy:
     portNumber: 4443
     appProtocol: http
   
+  ingress:
+    enabled: true
+    className: nginx
+    path: /
+    # Only used if API capabilities (networking.k8s.io/v1) allow it
+    pathType: ImplementationSpecific
+    # Used to create an Ingress record.
+    hosts:
+      - hfms.proxy.com
+    labels: {}
+    tls: 
+      - secretName: tls-cert-hfms-proxy
+        hosts:
+          - hfms.proxy.com
