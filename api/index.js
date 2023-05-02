@@ -23,11 +23,11 @@ app.get('/requests', (req, res) => {
 
     // Set up database connection options
     const connectionOptions = {
-      host: 'db',
-      user: 'user',
-      password: 'pass',
-      database: 'hfms',
-      port: '3306'
+      host: process.env.HOST,
+      user: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
+      port: process.env.PORT
     };
 
     // Create a function to connect to the database
