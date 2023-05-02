@@ -43,10 +43,12 @@ services:
       MYSQL_DATABASE: hfms
       MYSQL_USER: user
       MYSQL_PASSWORD: pass
+      MYSQL_TCP_PORT: 3306
+      
     networks:
       - mynetwork
-    ports:
-      - "3308:3306"
+    expose:
+      - 3306
     volumes:
       - ./queries.sql:/queries.sql
     command: ["--init-file", "/queries.sql"]
@@ -61,8 +63,8 @@ services:
   nginx:
     container_name: nginx
     image: nginx:1.23.3-alpine
-    ports:
-      - 3000:80
+    expose:
+      - 80
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./server:/var/www
@@ -97,8 +99,8 @@ services:
       USERNAME: user
       PASSWORD: pass
       DATABASE: hfms
-    ports:
-      - "3002:3002"
+    expose:
+      - 3002
     networks:
       - mynetwork
     depends_on:
