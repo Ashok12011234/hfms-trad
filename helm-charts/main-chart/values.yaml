@@ -51,6 +51,7 @@ hfms-db:
     MYSQL_DATABASE: hfms
     MYSQL_USER: user
     MYSQL_PASSWORD: pass
+    MYSQL_TCP_PORT: 3306
 
 hfms-admin:
   fullnameOverride: "hfms-admin"
