@@ -1,82 +1,102 @@
-# Default values for main-chart.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+hfms-server:
+  fullnameOverride: "hfms-server"
 
-replicaCount: 1
+  service:
+    type: ClusterIP
+    port: 9000
+  
+  env:
+    HOST : hfms-db
+    PORT : 3306
+    USERNAME : root
+    PASSWORD : pass
+    DATABASE : hfms
+    URL : http://hfms-proxy.default.svc.cluster.local:4443
+    SERVER_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/server
+  
+  nginx:
+    fullnameOverride: "hfms-nginx"
 
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+    service:
+      type: ClusterIP
+      port: 80
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+    env : 
+      CONFIG_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/helm-charts/main-chart/charts/hfms-server/charts/nginx/configs/nginx.conf
+      SERVER_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/server
 
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
+hfms-api:
+  fullnameOverride: "hfms-api"
 
-podAnnotations: {}
+  service:
+    type: ClusterIP
+    port: 3002
+  
+  env:
+    HOST : hfms-db
+    PORT : 3306
+    USERNAME : root
+    PASSWORD : pass
+    DATABASE : hfms
+  
+hfms-db:
+  fullnameOverride: "hfms-db"
 
-podSecurityContext: {}
-  # fsGroup: 2000
+  service:
+    type: ClusterIP
+    port: 3306
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+  env:
+    MYSQL_ROOT_PASSWORD: pass
+    MYSQL_DATABASE: hfms
+    MYSQL_USER: user
+    MYSQL_PASSWORD: pass
 
-service:
-  type: ClusterIP
-  port: 80
+hfms-admin:
+  fullnameOverride: "hfms-admin"
 
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  service:
+    type: ClusterIP
+    port: 8080
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+oauth2-proxy:
 
-nodeSelector: {}
+  fullnameOverride: "hfms-proxy"
 
-tolerations: []
+  # Oauth client configuration specifics
+  config:
+    # Add config annotations
+    annotations: {}
+    # OAuth client ID
+    clientID: "880386795823-olrdr7047el8skubcoaa02avc13lql6b.apps.googleusercontent.com"
+    # OAuth client secret
+    clientSecret: "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"
+ 
+    cookieSecret: "5S5wk5A5O6MkKfZZ"
+  
+    cookieName: "oauth2_proxy"
+    
+    configFile: |-
+      email_domains = [ "*" ]
+      upstreams = [
+      "http://hfms-nginx.default.svc.cluster.local:80",
+      "http://hfms-api.default.svc.cluster.local:3002/requests"]
+      provider = "oidc"
+      provider_display_name="Asgardeo"
+      reverse_proxy = false
+      redirect_url = "https://hfms.proxy.com/oauth2/callback"
+      oidc_issuer_url = "https://accounts.google.com"
+      scope= "openid email"
+      skip_auth_regex="/hospitalDashoard.php,/assets/*"
+      skip_provider_button=true
+      pass_access_token=true
+      pass_authorization_header=true
+      pass_basic_auth=true
+      pass_user_headers=true
 
-affinity: {}
+  service:
+    type: ClusterIP
+    portNumber: 4443
+    appProtocol: http
+  

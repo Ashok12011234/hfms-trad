@@ -41,7 +41,7 @@ service:
   port: 9000
 
 ingress:
-  enabled: true
+  enabled: false
   className: "nginx"
   annotations: {}
     # kubernetes.io/ingress.class: nginx
@@ -89,3 +89,14 @@ env:
   DATABASE : hfms
   URL : http://hfms-proxy.default.svc.cluster.local:4443
   SERVER_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/server
+
+nginx:
+  fullnameOverride: "hfms-nginx"
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  env : 
+    CONFIG_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/helm-charts/main-chart/charts/hfms-server/charts/nginx/configs/nginx.conf
+    SERVER_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/server
