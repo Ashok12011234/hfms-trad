@@ -22,7 +22,7 @@ hfms-server:
       port: 80
 
     env : 
-      CONFIG_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/helm-charts/main-chart/charts/hfms-server/charts/nginx/configs/nginx.conf
+      CONFIG_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/helm-charts/nginx.conf
       SERVER_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/server
 
 hfms-api:
