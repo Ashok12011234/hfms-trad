@@ -102,7 +102,7 @@ oauth2-proxy:
       redirect_url = "https://hfms.proxy.com/oauth2/callback"
       oidc_issuer_url = "https://accounts.google.com"
       scope= "openid email"
-      skip_auth_regex="/hospitalDashoard.php,/assets/*"
+      skip_auth_regex="/hospitalDashboard.php,/assets/*"
       skip_provider_button=true
       pass_access_token=true
       pass_authorization_header=true
