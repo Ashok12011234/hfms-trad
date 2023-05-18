@@ -1,14 +1,11 @@
 <?php
 session_start();
 include("AuthenticationService.php");
-
-
-
 include("classes/probDomCls/member.php");
-//include("AuthenticationService.php");
+
 
 if (AuthenticationService::isActive()) {
-    $user =Hospital::fetchByUserName(AuthenticationService::getUser());
+    $user =Hospital::fetchByUserName("ashokkumar@wso3.com");
      
     $type=1;
       
@@ -30,7 +27,7 @@ if (AuthenticationService::isActive()) {
       <li class="nav-item ms-2">
 
 
-        <a href="./hospitalDashoard.php" class="nav-link">Home</a>
+        <a href="./hospitalDashboard.php" class="nav-link">Home</a>
 
 
       </li>
@@ -41,7 +38,7 @@ if (AuthenticationService::isActive()) {
                     echo 'display:none;';
                   }
                   ?>" class="nav-item ms-2">
-        <a class="nav-link" href="/oauth2/sign_in?rd=/hospitalDashoard.php">Login</a>
+        <a class="nav-link" href="/oauth2/sign_in?rd=/hospitalDashboard.php">Login</a>
       </li>
       
      
@@ -85,7 +82,7 @@ if (AuthenticationService::isActive()) {
 
       <span class="user-name me-4 ms-1" id="hospitalDropdownButton"><?php
                                                                     if ($type!= 0) {
-                                                                      echo $user->get_username();
+                                                                      echo AuthenticationService::getUser();
                                                                     }
                                                                     ?></span>
 
@@ -95,7 +92,7 @@ if (AuthenticationService::isActive()) {
 
         <h2><?php
             if ($type != 0) {
-              echo $user->get_name();
+             echo $user->get_name();
             } ?><img src="<?php if ($type != 0){echo $user->get_profile();} ?>" alt="usericon" style="width: 60px;height: 60px;border-radius: 50%;float: right;" class="ms-2"></h2>
       </a>
       <p class="ms-2" style="font-size: 15px; margin-bottom:-5px; "><i class="fas fa-map-marker-alt"></i>&nbsp;
@@ -116,7 +113,7 @@ if (AuthenticationService::isActive()) {
         <li style="margin-bottom: 10px;"><a href="#" id="hospitalSignoutPannel">
             Help</a></li>
             
-        <li><a href="/oauth2/sign_out?rd=/hospitalDashoard.php" id="hospitalSignoutPannel">
+        <li><a href="/oauth2/sign_out?rd=/hospitalDashboard.php" id="hospitalSignoutPannel">
 
             Logout</a></li>
             <!--
