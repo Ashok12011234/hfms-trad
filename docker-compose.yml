@@ -25,7 +25,7 @@ services:
       OAUTH2_PROXY_REDIRECT_URL: "http://localhost:8000/oauth2/callback"
       OAUTH2_PROXY_OIDC_ISSUER_URL: "https://accounts.google.com"
       OAUTH2_PROXY_SCOPE: openid email
-      OAUTH2_PROXY_SKIP_AUTH_REGEX: /hospitalDashoard.php,/assets/*
+      OAUTH2_PROXY_SKIP_AUTH_REGEX: /hospitalDashboard.php,/assets/*
       OAUTH2_PROXY_SKIP_JWT_BEARER_TOKENS: true
       OAUTH2_PROXY_PASS_ACCESS_TOKEN: true
       OAUTH2_PROXY_PASS_BASIC_AUTH: true

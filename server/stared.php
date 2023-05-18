@@ -699,7 +699,7 @@ $type=0;
     var id = x.id;
     if (x.className == "far fa-star col fa-lg ms-3 providerStar") {
       $.ajax({
-        url: "hospitalDashoard.php",
+        url: "hospitalDashboard.php",
         type: "POST",
         data: {
           starProviderId: id,
@@ -711,7 +711,7 @@ $type=0;
       });
     } else {
       $.ajax({
-        url: "hospitalDashoard.php",
+        url: "hospitalDashboard.php",
         type: "POST",
         data: {
           star: "starProv",
@@ -731,7 +731,7 @@ $type=0;
     var id = x.id;
     if (x.className == "far fa-star col fa-lg ms-4") {
       $.ajax({
-        url: "hospitalDashoard.php",
+        url: "hospitalDashboard.php",
         type: "POST",
         data: {
           starHospitalId: id,
@@ -743,7 +743,7 @@ $type=0;
       });
     } else {
       $.ajax({
-        url: "hospitalDashoard.php",
+        url: "hospitalDashboard.php",
         type: "POST",
         data: {
           star: "starHos",

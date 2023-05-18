@@ -1,5 +1,5 @@
 <?php
 
-header("Location: hospitalDashoard.php");
+header("Location: hospitalDashboard.php");
 
 ?>
