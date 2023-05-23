@@ -11,7 +11,7 @@ hfms-server:
     USERNAME : root
     PASSWORD : pass
     DATABASE : hfms
-    URL : http://hfms-proxy.default.svc.cluster.local:4443
+    URL : http://hfms-proxy.hfms.svc.cluster.local:4443
     SERVER_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/server
   
   nginx:
@@ -94,8 +94,8 @@ oauth2-proxy:
     configFile: |-
       email_domains = [ "*" ]
       upstreams = [
-      "http://hfms-nginx.default.svc.cluster.local:80",
-      "http://hfms-api.default.svc.cluster.local:3002/requests"]
+      "http://hfms-nginx.hfms.svc.cluster.local:80",
+      "http://hfms-api.hfms.svc.cluster.local:3002/requests"]
       provider = "oidc"
       provider_display_name="Asgardeo"
       reverse_proxy = false

@@ -87,7 +87,7 @@ env:
   USERNAME : root
   PASSWORD : pass
   DATABASE : hfms
-  URL : http://hfms-proxy.default.svc.cluster.local:4443
+  URL : http://hfms-proxy.hfms.svc.cluster.local:4443
   SERVER_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/server
 
 nginx:
