@@ -17,13 +17,13 @@ services:
       - --upstream
       - http://nginx:80,http://api:3002/requests 
     environment:
-      OAUTH2_PROXY_CLIENT_ID: "880386795823-olrdr7047el8skubcoaa02avc13lql6b.apps.googleusercontent.com"
-      OAUTH2_PROXY_CLIENT_SECRET: "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"
+      OAUTH2_PROXY_CLIENT_ID: ""
+      OAUTH2_PROXY_CLIENT_SECRET: ""
       OAUTH2_PROXY_COOKIE_SECRET: 5S5wk5A5O6MkKfZZ
       OAUTH2_PROXY_EMAIL_DOMAINS: "*"
       OAUTH2_PROXY_PROVIDER: oidc
       OAUTH2_PROXY_REDIRECT_URL: "http://localhost:8000/oauth2/callback"
-      OAUTH2_PROXY_OIDC_ISSUER_URL: "https://accounts.google.com"
+      OAUTH2_PROXY_OIDC_ISSUER_URL: ""
       OAUTH2_PROXY_SCOPE: openid email
       OAUTH2_PROXY_SKIP_AUTH_REGEX: /hospitalDashboard.php,/assets/*
       OAUTH2_PROXY_SKIP_JWT_BEARER_TOKENS: true
@@ -74,8 +74,9 @@ services:
       - mynetwork
 
   server:
-    container_name: server
+    container_name: hfms-server
     build: ./server
+    image: ashok1201/hfms-server
     environment:
       HOST: db
       PORT: 3306
@@ -93,6 +94,8 @@ services:
 
   api:
     build: ./api
+    image: ashok1201/hfms-api
+    container_name: hfms-api
     environment:
       HOST: db
       PORT: 3306

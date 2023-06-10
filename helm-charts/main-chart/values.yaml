@@ -1,4 +1,9 @@
 hfms-server:
+  image:
+    repository: ashok1201/hfms-server
+    pullPolicy: IfNotPresent
+    tag: "1.1"
+
   fullnameOverride: "hfms-server"
 
   service:
@@ -15,6 +20,12 @@ hfms-server:
     SERVER_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/server
   
   nginx:
+    image:
+      repository: nginx
+      pullPolicy: IfNotPresent
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: "latest"
+
     fullnameOverride: "hfms-nginx"
 
     service:
@@ -26,6 +37,11 @@ hfms-server:
       SERVER_PATH: /Users/ashokkumar/Desktop/HFMS-TRAD/server
 
 hfms-api:
+  image:
+    repository: ashok1201/hfms-api
+    pullPolicy: IfNotPresent
+    tag: "latest"
+
   fullnameOverride: "hfms-api"
 
   service:
@@ -40,6 +56,11 @@ hfms-api:
     DATABASE : hfms
   
 hfms-db:
+  image:
+    repository: mysql
+    pullPolicy: IfNotPresent
+    tag: "latest"
+
   fullnameOverride: "hfms-db"
 
   service:
@@ -54,6 +75,11 @@ hfms-db:
     MYSQL_TCP_PORT: 3306
 
 hfms-admin:
+  image:
+    repository: adminer
+    pullPolicy: IfNotPresent
+    tag: "latest"
+    
   fullnameOverride: "hfms-admin"
 
   service:
@@ -75,6 +101,10 @@ hfms-admin:
           - hfms.admin.com
 
 oauth2-proxy:
+  image:
+    repository: "quay.io/oauth2-proxy/oauth2-proxy"
+    tag: ""
+    pullPolicy: "IfNotPresent"
 
   fullnameOverride: "hfms-proxy"
 
@@ -83,9 +113,9 @@ oauth2-proxy:
     # Add config annotations
     annotations: {}
     # OAuth client ID
-    clientID: "880386795823-olrdr7047el8skubcoaa02avc13lql6b.apps.googleusercontent.com"
+    clientID: ""
     # OAuth client secret
-    clientSecret: "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"
+    clientSecret: ""
  
     cookieSecret: "5S5wk5A5O6MkKfZZ"
   
@@ -99,8 +129,8 @@ oauth2-proxy:
       provider = "oidc"
       provider_display_name="Asgardeo"
       reverse_proxy = false
-      redirect_url = "https://hfms.proxy.com/oauth2/callback"
-      oidc_issuer_url = "https://accounts.google.com"
+      redirect_url = "https://sample-app.local/oauth2/callback"
+      oidc_issuer_url = ""
       scope= "openid email"
       skip_auth_regex="/hospitalDashboard.php,/assets/*"
       skip_provider_button=true
@@ -122,9 +152,9 @@ oauth2-proxy:
     pathType: ImplementationSpecific
     # Used to create an Ingress record.
     hosts:
-      - hfms.proxy.com
+      - sample-app.local
     labels: {}
     tls: 
-      - secretName: tls-cert-hfms-proxy
+      - secretName: tls-cert-spa-app
         hosts:
-          - hfms.proxy.com
+          - sample-app.local
