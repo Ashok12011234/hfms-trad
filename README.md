@@ -9,7 +9,7 @@ This is the sample web application to demonstrate how to protect traditional app
 1. A running [Kubernetes cluster](https://kubernetes.io/docs/setup/). You can use [Minikube](https://minikube.sigs.k8s.io/docs/start/) or [Rancher Desktop](https://docs.rancherdesktop.io/getting-started/installation/) or similar software to run it on the local machine.
 2. [Helm](https://helm.sh/docs/intro/install/) and [Kubernetes client](https://kubernetes.io/docs/tasks/tools/#kubectl) should be installed.
 3. [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) should be installed. If you are using Minikube, you can install ingress by running ```minikube addons enable ingress``` command. If you are using Rancher Desktop, you can install ingress by following steps 1,2, and 3 in the [guide](https://docs.rancherdesktop.io/how-to-guides/setup-NGINX-Ingress-Controller/).
-4. Register for an OpenID Connect web app following this [guide](https://wso2.com/asgardeo/docs/guides/applications/register-oidc-web-app/#register-the-app). You need to add https://hfms.proxy.com/oauth2/callback as an authorized redirect URL. 
+4. Register for an OpenID Connect web app following this [guide](https://wso2.com/asgardeo/docs/guides/applications/register-oidc-web-app/#register-the-app). You need to add https://sample-app.local/oauth2/callback as an authorized redirect URL. 
 
 ## Steps to deploy the sample application
 
@@ -37,7 +37,7 @@ minikube ip
 Add the following records to the host file on your local machine. Replace the ```<minikube_ip>``` with the IP retrieved in the above step. Mac users should use ```127.0.0.1``` as the ```<minikube_ip>``` as we have enabled tunneling for Mac users.
 
 ```bash
-<minikube_ip> sample.app.local
+<minikube_ip> sample-app.local
 ```
 
 ### Rancher Desktop
@@ -51,7 +51,7 @@ kubectl get service ingress-nginx-controller --namespace=ingress-nginx
 Add the following records to the host file on your local machine. Replace the ```<external_ip>``` with the IP retrieved in the above step
 
 ```bash
-<external_ip>  sample.app.local
+<external_ip>  sample-app.local
 ```
 
 ## Running the sample
@@ -62,11 +62,7 @@ Set the cloned repository location as an environment variable.
 export BASE_PATH= <project_location>
 ```
 
-Navigate to the ```helm-charts/main-chart``` location from the project directory and run the following command to install the sample app.
-
-```bash
-helm dependency update
-```
+In the same terminal window, navigate to the ```helm-charts/main-chart``` location from the project directory and run the following command to install the sample app.
 
 ```bash
 helm upgrade --install  \
@@ -89,4 +85,5 @@ Run the following command and check whether the pods are in a running state.
 kubectl get pods -n hfms
 ```
 
-You can now access the sample application using this [URL](https://sample-app.local).
+You can now access the sample application using this [URL](https://sample-app.local/hospitalDashboard.php).
+
