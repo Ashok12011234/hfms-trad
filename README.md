@@ -86,3 +86,4 @@ kubectl get pods -n hfms
 ```
 
 You can now access the sample application using this [URL](https://sample-app.local/hospitalDashboard.php).
+
